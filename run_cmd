@@ -1,0 +1,13 @@
+pth=/docker/letsencrypt-docker-nginx/src/letsencrypt;
+
+docker run -it --rm \
+-v $pth/etc:/etc/letsencrypt \
+-v $pth/lib:/var/lib/letsencrypt \
+-v /docker/letsencrypt-docker-nginx/src/letsencrypt/letsencrypt-site:/data/letsencrypt \
+-v $pth/log:/var/log/letsencrypt \
+certbot/certbot \
+certonly --webroot \
+--register-unsafely-without-email --agree-tos \
+--webroot-path=/data/letsencrypt \
+--staging \
+-d data.zowlr.com
